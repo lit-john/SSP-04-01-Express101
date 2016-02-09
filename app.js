@@ -1,3 +1,4 @@
+var debug = require('debug')('SSP-04-01-Express101:server');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -37,6 +38,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+  debug('In developer mode');
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
