@@ -1,4 +1,11 @@
-var debug = require('debug')('SSP-04-01-Express101:server');
+// The debug package allows us to print debug messages when
+// the DEBUG environment variable is set to Express:*
+// On Windows we would set this with
+//  set DEBUG=Express101:*
+//
+// On Mac it's
+//  DEBUG=Express101:*
+var debug = require('debug')('Express101:server');
 // Require the various modules that we need
 var express = require('express');
 var path = require('path');
