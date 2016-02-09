@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title What is your name
+  body
+    if !yourName
+      form(action="/name", method="post")
+        label(for="yourName") Name
+        input(type="text", id="yourName", name="yourName")
+        label(for="yourPassword") Password
+        input(type="password", id="yourPassword", name="yourPassword")
+        input(type="submit")
+    else
+      div Hello #{yourName} I know your password. It's #{pwd}.

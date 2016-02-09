@@ -1,4 +1,5 @@
 var debug = require('debug')('SSP-04-01-Express101:server');
+// Require the various modules that we need
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,8 +10,10 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+// Create an Express app
 var app = express();
 
+// Set the various express app properties
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -23,13 +26,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Map url requests of the format '/something' to routes e.g. '/home', '/index', etc
 app.use('/', routes);
+
+// Map url requests of the format '/users/something' to users e.g. '/users/john', '/users/mary', '/users/1868', etc
 app.use('/users', users);
 
+
+// If the url request does not match one of the above formats then this app can't support it
+// so return a 'Not found' (aka 404) message.
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+
+  // pass the request on to the next 'middleware'
   next(err);
 });
 
